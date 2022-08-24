@@ -1,0 +1,7 @@
+{
+  "name": "vry-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
