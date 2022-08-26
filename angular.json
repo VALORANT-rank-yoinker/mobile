@@ -30,7 +30,10 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
+            "styles": [
+              "src/theme/ionic.scss",
+              "src/global.scss"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,
@@ -38,7 +41,8 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "inlineStyleLanguage": "scss"
           },
           "configurations": {
             "production": {
@@ -109,7 +113,8 @@
                 "input": "src/assets",
                 "output": "/assets"
               }
-            ]
+            ],
+            "inlineStyleLanguage": "scss"
           },
           "configurations": {
             "ci": {
@@ -146,9 +151,13 @@
     }
   },
   "cli": {
+    "cache": {
+      "enabled": true
+    },
     "schematicCollections": [
       "@ionic/angular-toolkit"
-    ]
+    ],
+    "analytics": "1a80bb65-a1db-49c6-a867-2926a05e471d"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

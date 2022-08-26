@@ -1,0 +1,13 @@
+:root {
+  --ion-background-color: var(--md3-n1-10);
+  --ion-header-background-color: var(--md3-n2-50);
+  --ion-text-color: var(--md3-a2-800);
+  --ion-card-background-color: var(--you-n2-50);
+}
+
+:root .dark {
+  --ion-background-color: var(--md3-n1-900);
+  --ion-header-background-color: var(--md3-n2-800);
+  --ion-text-color: var(--md3-a2-10);
+  --ion-card-background-color: var(--md3-n2-800);
+}

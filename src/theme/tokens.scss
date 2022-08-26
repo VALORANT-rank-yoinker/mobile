@@ -1,0 +1,20 @@
+:root {
+  --header-min-height: 8vh;
+  --statusbar-height: 24px;
+  --side-clearance: 0.9rem;
+}
+
+:root {
+  --app-radius: 1.725rem;
+  --app-radius-large: 2.4rem;
+}
+
+:root {
+  --fs-800: clamp(2rem, 12.1vw, 3rem);
+  --fs-700: clamp(1.45rem, 6.8vw, 1.8rem);
+  --fs-600: clamp(1.2rem, 6vw, 1.6rem);
+  --fs-550: clamp(1rem, 4.4vw, 1.2rem);
+  --fs-510: clamp(0.8rem, 4.3vw, 1.3rem);
+  --fs-500: clamp(0.8rem, 3.4vw, 1rem);
+  --fs-400: clamp(0.65rem, 3vw, 0.8rem);
+}

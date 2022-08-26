@@ -1,0 +1,25 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Server</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="serverForm">
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Host IP</ion-label>
+      <ion-input formControlName="hostIp" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Port</ion-label>
+      <ion-input formControlName="port" type="number"></ion-input>
+    </ion-item>
+
+  </form>
+
+</ion-content>

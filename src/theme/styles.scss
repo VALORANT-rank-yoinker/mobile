@@ -1,0 +1,17 @@
+* {
+  font-family: "Google Sans", sans;
+}
+
+ion-header {
+  --bg: var(--ion-background-color);
+  background-color: var(--bg);
+  padding-top: var(--statusbar-height);
+  ion-toolbar {
+    --background: var(--bg);
+    --min-height: var(--header-min-height);
+    ion-title {
+      font-size: var(--fs-700);
+      font-weight: normal;
+    }
+  }
+}

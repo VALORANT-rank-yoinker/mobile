@@ -1,0 +1,18 @@
+ion-item {
+  --transition: none;
+  ion-icon {
+    color: var(--ion-text-color);
+    font-size: 1.65rem;
+    background-color: var(--ion-card-background-color);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    padding: 0.75rem;
+    vertical-align: middle;
+    margin-inline: 0 1.2rem;
+  }
+  ion-label {
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}

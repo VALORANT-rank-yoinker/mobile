@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>vRY Mobile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" pullFactor="0.1" pullMin="200" pullMax="300" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ng-container *ngIf="(data$ | async) as data;else noData">
+
+    <div class="status">GameState: {{data.state | titlecase}}</div>
+
+    <div class="card-container">
+      <ng-container *ngFor="let p of data.players | keyvalue : orderByTeam">
+        <app-player-card [data]="p.value"></app-player-card>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-template #noData>
+    <div class="no-data-card">
+      <p>No Data Available</p>
+    </div>
+  </ng-template>
+
+</ion-content>

@@ -1,0 +1,21 @@
+ion-item {
+  --ion-item-background: transparent;
+}
+
+ion-refresher-content {
+  .spinner-arrow-container > ion-spinner {
+    color: var(--md3-a1-500) !important;
+  }
+  .refresher-refreshing-icon > ion-spinner {
+    color: var(--md3-a1-500) !important;
+  }
+  ion-icon {
+    color: var(--md3-a1-500) !important;
+  }
+}
+
+ion-refresher.refresher-native .refresher-pulling-icon,
+ion-refresher.refresher-native .refresher-refreshing-icon {
+  background: var(--ion-background-color);
+  border-color: var(--ion-background-color);
+}

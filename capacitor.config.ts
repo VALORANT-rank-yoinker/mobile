@@ -1,10 +1,11 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'vry-mobile',
+  appId: 'io.vry.mobile',
+  appName: 'Vry Mobile',
   webDir: 'www',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  backgroundColor: '#00000000',
 };
 
 export default config;

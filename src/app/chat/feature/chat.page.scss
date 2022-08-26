@@ -1,0 +1,17 @@
+.no-data-card {
+  margin-top: 1rem;
+  width: calc(100% - var(--side-clearance));
+  margin-inline: auto;
+  background-color: var(--ion-card-background-color);
+  border-radius: var(--app-radius);
+  padding: var(--app-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  ion-icon {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none" [routerLink]="['server']">
+    <ion-icon name="code-working-outline" slot="start"></ion-icon>
+    <ion-label>
+      <h2>Server</h2>
+      <p>Hostname and Endpoints</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none" [routerLink]="['./about']">
+    <ion-icon name="information-outline" slot="start"></ion-icon>
+    <ion-label>
+      <h2>About</h2>
+      <p>Version, Author and more about the app</p>
+    </ion-label>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer collapse="fade">
+  <app-ws-status></app-ws-status>
+</ion-footer>

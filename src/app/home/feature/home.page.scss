@@ -1,0 +1,65 @@
+:host {
+  --fs-label: calc(clamp(0.5rem, 2.1vw, 0.68rem) * 1.325);
+
+  --tab-background-color: var(--md3-n2-50);
+  --clr-text: var(--md3-n2-800);
+  --clr-active-icon: var(--md3-a2-900);
+  --clr-active-text: var(--md3-a2-800);
+  --clr-active-bg: var(--md3-a2-100);
+}
+
+:host-context(.dark) {
+  --tab-background-color: var(--md3-n2-800);
+  --clr-text: var(--md3-n2-300);
+  --clr-active-icon: var(--md3-a2-100);
+  --clr-active-text: var(--md3-a2-200);
+  --clr-active-bg: var(--md3-a2-700);
+}
+
+ion-tab-bar {
+  box-shadow: 0 0 3px rgb(0 0 0 / 6%);
+  background-color: var(--tab-background-color);
+  padding: 1px 0;
+  --border: none;
+
+  ion-tab-button {
+    background-color: var(--tab-background-color);
+    padding: 0;
+    --padding-end: 0;
+    --padding-start: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --ripple-color: transparent;
+
+    ion-icon {
+      margin-top: 1px;
+      margin-bottom: 2px;
+      font-size: 1.32rem;
+      padding-block: 0.32rem;
+      padding-inline: 1.33rem;
+      color: var(--clr-text);
+      background-color: transparent;
+      border-radius: var(--app-radius-large);
+      transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    }
+
+    ion-label {
+      font-size: var(--fs-label);
+      font-weight: 500;
+      color: var(--clr-text);
+      margin-bottom: 0;
+      transition: color 300ms ease-in-out;
+    }
+
+    &[aria-selected="true"] {
+      ion-icon {
+        color: var(--clr-active-icon);
+        background-color: var(--clr-active-bg);
+      }
+
+      ion-label {
+        color: var(--clr-active-text);
+      }
+    }
+  }
+}

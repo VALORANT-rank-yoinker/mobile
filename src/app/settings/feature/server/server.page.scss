@@ -1,0 +1,31 @@
+:host {
+  --clr-a1: var(--md3-a2-600);
+  --clr-bg-btn: var(--md3-a3-500);
+  --clr-bg-input: var(--md3-n1-50);
+}
+
+:host-context(.dark) {
+  --clr-a1: var(--md3-a2-500);
+  --clr-bg-btn: var(--md3-a3-600);
+  --clr-bg-input: rgba(255, 255, 255, 10%);
+}
+
+ion-item {
+  ion-label {
+    --color: var(--clr-a1);
+    margin-left: var(--app-radius);
+    margin-bottom: 10px;
+  }
+  &.item-has-focus > ion-label {
+    color: var(--clr-a1) !important;
+  }
+  ion-input {
+    --padding: calc(var(--app-radius) * 0.6);
+    --padding-top: var(--padding);
+    --padding-bottom: var(--padding);
+    --padding-start: var(--padding);
+    --padding-end: var(--padding);
+    border-radius: var(--app-radius);
+    --background: var(--clr-bg-input);
+  }
+}

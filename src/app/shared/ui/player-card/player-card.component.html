@@ -1,0 +1,11 @@
+<div class="card" [ngClass]="[data?.team || 'none' | lowercase]">
+  <div class="img-container">
+    <img class="agent-img" [src]="data.agentImgLink || '../../../assets/webp/val.webp'">
+    <div class="level">{{data.level}}</div>
+  </div>
+  <div class="info-container">
+    <div class="name">{{data.name}}</div>
+    <div class="rank">Rank: {{numToRank(data?.rank)}}</div>
+    <div class="peak-rank">Peak Rank: {{numToRank(data?.peakRank)}} {{data?.peakRankAct | uppercase}}</div>
+  </div>
+</div>
