@@ -30,11 +30,8 @@ jobs:
       - name: Build app
         run: npm run build
 
-      - name: Capacitor update
-        run: npx cap update
-
-      - name: Capacitor copy
-        run: npx cap copy
+      - name: Capacitor Sync
+        run: npx cap sync
 
       - name: Build debug apk
         run: cd android && gradle assembleDebug
