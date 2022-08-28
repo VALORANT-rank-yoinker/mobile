@@ -1,3 +1,5 @@
+import { VryMessage } from 'src/app/shared/data-access/vry-link.service';
+
 /* eslint-disable @typescript-eslint/naming-convention */
 export interface Player {
   name: string;
@@ -14,6 +16,7 @@ export interface Player {
   peakRank?: number;
   peakRankAct?: string;
   rr?: number;
+  partyNumber?: number;
 }
 
 export interface Spray {
@@ -22,10 +25,23 @@ export interface Spray {
   fullTransparentIcon: string;
 }
 
-export interface MatchData {
+export enum GameMode {
+  'New Map' = 'newmap',
+  'Competitive' = 'competetive',
+  'Unrated' = 'unrated',
+  'Spike Rush' = 'spikerush',
+  'Deathmatch' = 'deathmatch',
+  'Escalation' = 'escalation',
+  'Replication' = 'replication',
+  'Custom' = 'custom',
+  'Snowball Fight' = 'snowballfight',
+}
+
+export interface HeartbeatMessage extends VryMessage {
   time: number;
   state: string;
-  type: string;
+  mode: GameMode;
+  selfPuuid: string;
   players: Record<string, Player>;
 }
 

@@ -1,3 +1,3 @@
-<div class="bar" *ngIf="(status$ | async) as status" [ngClass]="[status|lowercase]">
-  Vry Link Status - {{status}}
+<div class="bar" *ngIf="{status: status$ | async, version: version$|async} as vm" [ngClass]="[vm.status|lowercase]">
+  Vry Link Status - {{vm.status}} {{(isConnected(vm.status)&&vm.version?.core) ? 'to Core v'+vm.version?.core:""}}
 </div>

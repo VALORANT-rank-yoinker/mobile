@@ -1,7 +1,43 @@
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+
+  .message {
+    max-width: 70%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    .sender {
+      color: var(--md3-n2-500);
+      font-weight: bold;
+      font-size: var(--fs-400);
+      .type {
+        font-size: var(--fs-400);
+      }
+    }
+
+    .text {
+      width: fit-content;
+      border-radius: 0.65rem;
+      padding: 0.45rem 1rem;
+      background-color: var(--ion-card-background-color);
+      font-size: var(--fs-550);
+    }
+
+    &.self {
+      align-self: flex-end;
+      .text {
+        margin-left: auto;
+        background-color: var(--md3-a2-600);
+      }
+    }
+  }
+}
+
 .no-data-card {
-  margin-top: 1rem;
-  width: calc(100% - var(--side-clearance));
-  margin-inline: auto;
   background-color: var(--ion-card-background-color);
   border-radius: var(--app-radius);
   padding: var(--app-radius);

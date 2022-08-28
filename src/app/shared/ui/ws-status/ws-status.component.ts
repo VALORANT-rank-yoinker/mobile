@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { WebSocketsService } from '../../data-access/web-sockets.service';
+import { VryLinkService } from '../../data-access/vry-link.service';
+import { Status } from '../../data-access/web-sockets.service';
 
 @Component({
   selector: 'app-ws-status',
@@ -7,7 +8,12 @@ import { WebSocketsService } from '../../data-access/web-sockets.service';
   styleUrls: ['./ws-status.component.scss'],
 })
 export class WsStatusComponent {
-  status$ = this.webSockets.status$.asObservable();
+  status$ = this.vryLink.status();
+  version$ = this.vryLink.getMessagesOfType('version');
 
-  constructor(private webSockets: WebSocketsService) {}
+  constructor(private vryLink: VryLinkService) {}
+
+  isConnected(status: Status) {
+    return status === Status.connected;
+  }
 }

@@ -1,17 +1,34 @@
 import { Injectable } from '@angular/core';
-import { startWith, Subject, switchMap, tap } from 'rxjs';
+import {
+  filter,
+  Observable,
+  shareReplay,
+  startWith,
+  Subject,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { StorageService } from './storage.service';
 import { WebSocketsService } from './web-sockets.service';
 
-interface VryPayload {
-  type: string;
+export enum VryMessageTypeEnum {
+  heartbeat = 'heartbeat',
+  version = 'version',
+  chat = 'chat',
+}
+
+export type VryMessageType = keyof typeof VryMessageTypeEnum;
+
+export interface VryMessage {
+  [key: string]: any;
+  type: VryMessageType;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class VryLinkService {
-  messages$ = this.wsService.messages$;
+  private messages$: Observable<VryMessage>;
 
   private refresh$ = new Subject();
 
@@ -19,6 +36,14 @@ export class VryLinkService {
     private wsService: WebSocketsService,
     private storage: StorageService
   ) {
+    this.messages$ = this.wsService.messages$.pipe(
+      shareReplay({
+        refCount: false,
+        bufferSize: 10,
+        windowTime: 60 * 1000,
+      })
+    ) as Observable<VryMessage>;
+
     const server$ = this.storage.getAsObservable('server');
     this.refresh$
       .asObservable()
@@ -33,6 +58,18 @@ export class VryLinkService {
         )
       )
       .subscribe();
+  }
+
+  getAllMessages() {
+    return this.messages$;
+  }
+
+  getMessagesOfType<T extends VryMessage>(type: VryMessageType) {
+    return this.messages$.pipe(filter((x: T) => x.type === type));
+  }
+
+  status() {
+    return this.wsService.status$.asObservable();
   }
 
   refresh() {

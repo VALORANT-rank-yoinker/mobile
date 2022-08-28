@@ -15,3 +15,10 @@ ion-header {
     }
   }
 }
+
+ion-content.app-page {
+  --padding-top: 0.7rem;
+  --padding-bottom: 0.7rem;
+  --padding-start: var(--side-clearance);
+  --padding-end: var(--side-clearance);
+}

@@ -8,4 +8,5 @@
     <div class="rank">Rank: {{numToRank(data?.rank)}}</div>
     <div class="peak-rank">Peak Rank: {{numToRank(data?.peakRank)}} {{data?.peakRankAct | uppercase}}</div>
   </div>
+  <div class="party" *ngIf="data?.partyNumber > 0"><span>{{data.partyNumber}}</span></div>
 </div>

@@ -3,51 +3,9 @@
   width: 100%;
 }
 
-// .card {
-//   height: var(--height);
-//   padding: var(--padding);
-
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   gap: 1rem;
-
-//   .agent-img {
-//     --size: 3.6rem;
-//     background-color: var(--ion-card-background-color);
-//     border-radius: 1rem;
-//     height: var(--size);
-//     width: var(--size);
-//     object-fit: cover;
-//   }
-
-//   .info {
-//     flex-grow: 1;
-//     height: var(--height);
-//     padding: calc(var(--app-radius) * 0.75);
-//     display: flex;
-//     flex-direction: column;
-//     background-color: var(--ion-card-background-color);
-//     border-radius: var(--app-radius);
-
-//     .name {
-//       font-size: calc(var(--fs-600) * 0.8);
-//       white-space: nowrap;
-//       overflow: hidden;
-//       text-overflow: ellipsis;
-//     }
-
-//     .line {
-//       display: flex;
-//       flex-direction: row;
-//       gap: 5px;
-//       font-size: var(--fs-500);
-//     }
-//   }
-// }
-
 .card {
+  position: relative;
+
   height: var(--height);
   width: 100%;
 
@@ -102,6 +60,26 @@
     .peak-rank {
       color: var(--md3-n1-200);
       font-size: var(--fs-500);
+    }
+  }
+
+  .party {
+    position: absolute;
+    top: calc(0.65 * var(--app-radius));
+    left: calc(0.65 * var(--app-radius));
+
+    width: calc(1.65 * var(--fs-500));
+    height: calc(1.65 * var(--fs-500));
+    font-size: var(--fs-500);
+    border-radius: 100vmax;
+    background-color: var(--md3-a3-500);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      padding-right: 1px;
     }
   }
 

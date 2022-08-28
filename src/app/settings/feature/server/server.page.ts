@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { distinctUntilChanged, merge, tap } from 'rxjs';
+import { distinctUntilChanged, merge, skip, tap } from 'rxjs';
 import { StorageService } from 'src/app/shared/data-access/storage.service';
 
 const IP_REGEX =
@@ -49,6 +49,7 @@ export class ServerPage implements AfterViewInit {
     );
 
     const storageUpdate$ = this.serverForm.valueChanges.pipe(
+      skip(1),
       distinctUntilChanged(),
       tap((_) => this.save())
     );

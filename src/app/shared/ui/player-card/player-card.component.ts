@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Player } from 'src/app/shared/interfaces/data.interface';
+import { Player } from '../../interface/heartbeat.interface';
 import { NUM_TO_RANK_LUT } from '../../util/constants';
 
 @Component({

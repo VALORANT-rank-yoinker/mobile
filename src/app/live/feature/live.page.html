@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="app-page">
 
   <ion-refresher slot="fixed" pullFactor="0.1" pullMin="200" pullMax="300" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -22,8 +22,9 @@
   </ng-container>
 
   <ng-template #noData>
-    <div class="no-data-card">
-      <p>No Data Available</p>
+    <div class="no-data-card" #no>
+      <ion-icon name="cloud-offline-outline"></ion-icon>
+      <p>Connect to vRY Core</p>
     </div>
   </ng-template>
 

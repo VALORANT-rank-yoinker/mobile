@@ -1,9 +1,12 @@
 import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { filter, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { VryLinkService } from 'src/app/shared/data-access/vry-link.service';
-import { MatchData, Player } from 'src/app/shared/interfaces/data.interface';
+import {
+  HeartbeatMessage,
+  Player,
+} from 'src/app/shared/interface/heartbeat.interface';
 
 @UntilDestroy()
 @Component({
@@ -15,11 +18,11 @@ import { MatchData, Player } from 'src/app/shared/interfaces/data.interface';
 export class LivePage {
   refresh$ = new Subject();
 
-  data$ = this.vryLink.messages$.pipe(
-    filter((x: MatchData) => x.type === 'heartbeat')
-  );
+  data$: Observable<HeartbeatMessage>;
 
-  constructor(private vryLink: VryLinkService) {}
+  constructor(private vryLink: VryLinkService) {
+    this.data$ = this.vryLink.getMessagesOfType('heartbeat');
+  }
 
   orderByTeam = (
     a: KeyValue<string, Player>,

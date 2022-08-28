@@ -1,15 +1,12 @@
 .status {
-  width: calc(100% - var(--side-clearance));
-  margin-top: 0.5rem;
-  margin-inline-start: var(--app-radius);
+  margin-inline-start: 0;
   color: var(--md3-n2-600);
-  font-size: var(--fs-550);
+  font-size: var(--fs-500);
+  font-weight: bold;
 }
 
 .card-container {
   margin-top: 1rem;
-  width: calc(100% - var(--side-clearance));
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,12 +15,16 @@
 }
 
 .no-data-card {
-  margin-top: 1rem;
-  height: 6rem;
-  width: calc(100% - var(--side-clearance));
-  margin-inline: auto;
   background-color: var(--ion-card-background-color);
   border-radius: var(--app-radius);
-  display: grid;
-  place-items: center;
+  padding: var(--app-radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  ion-icon {
+    font-size: 2rem;
+  }
 }
