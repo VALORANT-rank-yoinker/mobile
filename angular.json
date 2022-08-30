@@ -34,6 +34,10 @@
               "src/theme/ionic.scss",
               "src/global.scss"
             ],
+            "allowedCommonJsDependencies": [
+              "localforage",
+              "color-calculus"
+            ],
             "scripts": [],
             "aot": false,
             "vendorChunk": true,

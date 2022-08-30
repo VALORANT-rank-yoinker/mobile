@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { Player } from '../../interface/heartbeat.interface';
 import { NUM_TO_RANK_LUT } from '../../util/constants';
+import { getAgentImageByName } from '../../util/val-api';
 
 @Component({
   selector: 'app-player-card',
@@ -10,6 +17,8 @@ import { NUM_TO_RANK_LUT } from '../../util/constants';
 })
 export class PlayerCardComponent {
   @Input() data: Player;
+  @Output() moreInfo = new EventEmitter<boolean>();
+  getAgentImage = getAgentImageByName;
 
   constructor() {}
 

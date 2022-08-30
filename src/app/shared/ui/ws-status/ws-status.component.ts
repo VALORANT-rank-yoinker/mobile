@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { VryLinkService } from '../../data-access/vry-link.service';
+import {
+  VersionMessage,
+  VryLinkService,
+} from '../../data-access/vry-link.service';
 import { Status } from '../../data-access/web-sockets.service';
 
 @Component({
@@ -9,11 +12,15 @@ import { Status } from '../../data-access/web-sockets.service';
 })
 export class WsStatusComponent {
   status$ = this.vryLink.status();
-  version$ = this.vryLink.getMessagesOfType('version');
+  version$ = this.vryLink.version();
 
   constructor(private vryLink: VryLinkService) {}
 
-  isConnected(status: Status) {
-    return status === Status.connected;
+  coreMessage(status: Status, version: VersionMessage) {
+    if (status !== Status.connected || !version?.core) {
+      return;
+    }
+
+    return `to Core v${version.core}`;
   }
 }

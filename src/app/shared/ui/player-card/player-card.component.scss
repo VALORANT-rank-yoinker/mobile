@@ -43,6 +43,7 @@
   }
 
   .info-container {
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
@@ -50,6 +51,9 @@
 
     .name {
       font-size: calc(1.1 * var(--fs-550));
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .rank {
@@ -81,6 +85,18 @@
     span {
       padding-right: 1px;
     }
+  }
+
+  .more {
+    bottom: 0;
+    right: 0;
+    font-size: var(--fs-400);
+    background-color: var(--md3-n2-700);
+    padding: 0.5rem 1rem;
+    position: absolute;
+    border-radius: var(--app-radius);
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   &.red {

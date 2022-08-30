@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonContent } from '@ionic/angular';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash-es';
 import { distinctUntilChanged, Observable, scan, Subject, tap } from 'rxjs';
 import { VryLinkService } from 'src/app/shared/data-access/vry-link.service';
 import { ChatMessage } from '../data-access/chat.interface';

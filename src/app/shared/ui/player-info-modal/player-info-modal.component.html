@@ -1,0 +1,23 @@
+<ion-content>
+  <h2 class="name">{{player.name}}</h2>
+  <h3>Stats</h3>
+  <div class="stats">
+    <div class="pill" *ngIf="player.level">Lvl: {{player.level}}</div>
+    <div class="pill" *ngIf="player.rr">RR: {{player.rr}}</div>
+    <div class="pill" *ngIf="player.winPercentage">WR%: {{player.winPercentage}}</div>
+    <div class="pill" *ngIf="player.kd">KD: {{player.kd}}</div>
+    <div class="pill" *ngIf="player.headshotPercentage">HS%: {{player.headshotPercentage}}</div>
+  </div>
+
+  <h3 *ngIf="player.weapons">Weapons</h3>
+  <swiper>
+    <ng-template swiperSlide *ngFor="let w of player?.weapons| keyvalue">
+
+      <div class="weapon-card">
+        <div class="name">{{w.value.skinDisplayName}}</div>
+        <img [src]="w.value.skinDisplayIcon">
+      </div>
+
+    </ng-template>
+  </swiper>
+</ion-content>

@@ -24,12 +24,16 @@ export interface VryMessage {
   type: VryMessageType;
 }
 
+export interface VersionMessage extends VryMessage {
+  core: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class VryLinkService {
   private messages$: Observable<VryMessage>;
-
+  private version$: Observable<VersionMessage>;
   private refresh$ = new Subject();
 
   constructor(
@@ -43,6 +47,10 @@ export class VryLinkService {
         windowTime: 60 * 1000,
       })
     ) as Observable<VryMessage>;
+
+    this.version$ = this.getMessagesOfType<VersionMessage>('version').pipe(
+      shareReplay(1)
+    );
 
     const server$ = this.storage.getAsObservable('server');
     this.refresh$
@@ -66,6 +74,10 @@ export class VryLinkService {
 
   getMessagesOfType<T extends VryMessage>(type: VryMessageType) {
     return this.messages$.pipe(filter((x: T) => x.type === type));
+  }
+
+  version() {
+    return this.version$;
   }
 
   status() {

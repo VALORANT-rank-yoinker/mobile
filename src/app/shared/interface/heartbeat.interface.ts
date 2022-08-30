@@ -2,8 +2,8 @@ import { VryMessage } from 'src/app/shared/data-access/vry-link.service';
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export interface Player {
+  puuid: string;
   name: string;
-  map?: string;
   team?: string;
   sprays?: Record<string, Spray>;
   level?: number;
@@ -15,8 +15,11 @@ export interface Player {
   rank?: number;
   peakRank?: number;
   peakRankAct?: string;
-  rr?: number;
+  rr: number;
   partyNumber?: number;
+  kd?: string;
+  headshotPercentage?: string;
+  winPercentage?: string;
 }
 
 export interface Spray {
@@ -41,7 +44,8 @@ export interface HeartbeatMessage extends VryMessage {
   time: number;
   state: string;
   mode: GameMode;
-  selfPuuid: string;
+  map?: string;
+  puuid: string;
   players: Record<string, Player>;
 }
 

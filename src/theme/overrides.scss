@@ -19,3 +19,7 @@ ion-refresher.refresher-native .refresher-refreshing-icon {
   background: var(--ion-background-color);
   border-color: var(--ion-background-color);
 }
+
+.player-info-modal {
+  --border-radius: var(--app-radius);
+}

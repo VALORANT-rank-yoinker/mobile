@@ -5,8 +5,9 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { distinctUntilChanged, merge, skip, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, merge, skip, tap } from 'rxjs';
 import { StorageService } from 'src/app/shared/data-access/storage.service';
+import { VryLinkService } from 'src/app/shared/data-access/vry-link.service';
 
 const IP_REGEX =
   '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$';
@@ -26,7 +27,8 @@ export class ServerPage implements AfterViewInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private storage: StorageService
+    private storage: StorageService,
+    private vryLink: VryLinkService
   ) {
     this.serverForm = this.formBuilder.group({
       hostIp: [
@@ -42,25 +44,34 @@ export class ServerPage implements AfterViewInit {
       ],
     });
   }
+
   ngAfterViewInit(): void {
-    const formUpdate$ = this.storage.getAsObservable('server').pipe(
+    const loadvalues$ = this.storage.getAsObservable('server').pipe(
       tap((server) => this.serverForm.patchValue(server)),
-      tap((server) => console.log(`[ServerPage]: Retrieve data ${server}`))
+      tap((server) =>
+        console.log(`[ServerPage]: Loading data ${JSON.stringify(server)}`)
+      )
     );
 
-    const storageUpdate$ = this.serverForm.valueChanges.pipe(
+    const updateValues$ = this.serverForm.valueChanges.pipe(
       skip(1),
+      debounceTime(500),
       distinctUntilChanged(),
-      tap((_) => this.save())
+      tap((_) => {
+        if (this.serverForm.valid) {
+          this.save();
+          this.vryLink.refresh();
+        }
+      })
     );
 
-    merge(formUpdate$, storageUpdate$).pipe(untilDestroyed(this)).subscribe();
+    merge(loadvalues$, updateValues$).pipe(untilDestroyed(this)).subscribe();
   }
 
   save() {
-    if (this.serverForm.valid) {
-      console.log(`[ServerPage]: Saving data ${this.serverForm.value}`);
-      this.storage.set('server', this.serverForm.value);
-    }
+    console.log(
+      `[ServerPage]: Saving data ${JSON.stringify(this.serverForm.value)}`
+    );
+    this.storage.set('server', this.serverForm.value);
   }
 }

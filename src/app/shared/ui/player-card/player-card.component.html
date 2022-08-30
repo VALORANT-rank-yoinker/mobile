@@ -1,6 +1,6 @@
 <div class="card" [ngClass]="[data?.team || 'none' | lowercase]">
   <div class="img-container">
-    <img class="agent-img" [src]="data.agentImgLink || '../../../assets/webp/val.webp'">
+    <img class="agent-img" [src]="getAgentImage(data.agent) || data.agentImgLink || '../../../assets/webp/val.webp'">
     <div class="level">{{data.level}}</div>
   </div>
   <div class="info-container">
@@ -9,4 +9,5 @@
     <div class="peak-rank">Peak Rank: {{numToRank(data?.peakRank)}} {{data?.peakRankAct | uppercase}}</div>
   </div>
   <div class="party" *ngIf="data?.partyNumber > 0"><span>{{data.partyNumber}}</span></div>
+  <div class="more" (click)="moreInfo.emit(true)">More</div>
 </div>
