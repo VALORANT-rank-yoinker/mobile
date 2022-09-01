@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   VersionMessage,
@@ -9,6 +10,8 @@ import { Status } from '../../data-access/web-sockets.service';
   selector: 'app-ws-status',
   templateUrl: './ws-status.component.html',
   styleUrls: ['./ws-status.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class WsStatusComponent {
   status$ = this.vryLink.status();

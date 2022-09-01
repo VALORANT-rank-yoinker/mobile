@@ -28,16 +28,6 @@ export class ChatPage {
     );
   }
 
-  formatSender(player: string, agent: string) {
-    if (player && agent) {
-      return `${player} (${agent})`;
-    } else if (player) {
-      return player;
-    } else {
-      return agent;
-    }
-  }
-
   async doRefresh(event: any) {
     this.vryLink.refresh();
     event.target.complete();

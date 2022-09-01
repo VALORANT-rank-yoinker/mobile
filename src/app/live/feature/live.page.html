@@ -10,13 +10,20 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ng-container *ngIf="(data$ | async) as data;else noData">
+  <ng-container *ngIf="(heartbeat$ | async) as hb;else noData">
 
-    <div class="status">GameState: {{data.state | titlecase}}{{data.state==="INGAME" ? ' - '+data.map : ''}}</div>
+    <div class="status">GameState: {{hb.state | titlecase}}{{hb.state==="INGAME" ? ' - '+hb.map : ''}}</div>
+    <div class="filter-bar" *ngIf="hb.state==='INGAME'">
+      <span>Filters</span>
+      <div class="filters" *ngIf="teamFilter$ | async as currentFilter">
+        <span *ngFor="let teamFilter of teamFilters" class="filter" [ngClass]="[teamFilter | lowercase]"
+          [class.selected]="teamFilter===currentFilter" (click)="teamFilter$.next(teamFilter)">{{teamFilter}}</span>
+      </div>
+    </div>
 
     <div class="card-container">
-      <ng-container *ngFor="let p of data.players | keyvalue : orderByTeam; trackBy: trackByPuuid ">
-        <app-player-card [data]="p.value" (moreInfo)="showMoreInfo(p.value)"></app-player-card>
+      <ng-container *ngFor="let p of (players$ | async); trackBy: trackByPuuid ">
+        <app-player-card [player]="p" (moreInfo)="showMoreInfo(p)"></app-player-card>
       </ng-container>
     </div>
   </ng-container>

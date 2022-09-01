@@ -33,9 +33,9 @@
 @import "~@ionic/angular/css/ionic-swiper";
 
 /* Custom files */
+@import "./theme/resets.scss";
 @import "./theme/fonts.scss";
 @import "./theme/themes.scss";
 @import "./theme/tokens.scss";
 @import "./theme/styles.scss";
 @import "./theme/overrides.scss";
-@import "./theme/resets.scss";

@@ -1,14 +1,16 @@
-import { KeyValue } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, Subject } from 'rxjs';
 import { VryLinkService } from 'src/app/shared/data-access/vry-link.service';
 import {
   HeartbeatMessage,
   Player,
 } from 'src/app/shared/interface/heartbeat.interface';
 import { PlayerInfoModalComponent } from 'src/app/shared/ui/player-info-modal/player-info-modal.component';
+
+const TEAM_FILTERS = ['All', 'Blue', 'Red'] as const;
+type TeamFilter = typeof TEAM_FILTERS[number];
 
 @UntilDestroy()
 @Component({
@@ -19,34 +21,42 @@ import { PlayerInfoModalComponent } from 'src/app/shared/ui/player-info-modal/pl
 })
 export class LivePage {
   refresh$ = new Subject();
+  teamFilters = TEAM_FILTERS;
+  teamFilter$ = new BehaviorSubject<TeamFilter>('All');
 
-  data$: Observable<HeartbeatMessage>;
+  heartbeat$: Observable<HeartbeatMessage>;
+  players$: Observable<Player[]>;
 
   constructor(
     private vryLink: VryLinkService,
     private modalctrl: ModalController
   ) {
-    this.data$ = this.vryLink.getMessagesOfType('heartbeat');
+    this.heartbeat$ = this.vryLink.getMessagesOfType('heartbeat');
+    this.players$ = combineLatest([this.heartbeat$, this.teamFilter$]).pipe(
+      map(([hb, filter]) =>
+        Object.values(hb.players)
+          .filter((p) => (filter === 'All' ? true : p.team === filter))
+          .sort(this.sortByTeam)
+      )
+    );
   }
 
-  orderByTeam = (
-    a: KeyValue<string, Player>,
-    b: KeyValue<string, Player>
-  ): number =>
-    a.value.team && a.value.team ? a.value.team.localeCompare(b.value.team) : 0;
+  sortByTeam = (a: Player, b: Player): number =>
+    a.team && a.team ? a.team.localeCompare(b.team) : 0;
 
-  trackByPuuid(index: number, player: KeyValue<string, Player>) {
-    return player.value.puuid;
+  trackByPuuid(index: number, player: Player) {
+    return player.puuid;
   }
 
   async showMoreInfo(player: Player) {
     const modal = await this.modalctrl.create({
       component: PlayerInfoModalComponent,
-      componentProps: { player },
       cssClass: 'player-info-modal',
-      backdropDismiss: true,
-      initialBreakpoint: 0.75,
+      componentProps: { player },
       breakpoints: [0, 0.75],
+      initialBreakpoint: 0.75,
+      showBackdrop: true,
+      backdropDismiss: true,
     });
 
     modal.present();

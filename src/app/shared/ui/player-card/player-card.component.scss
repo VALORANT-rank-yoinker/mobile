@@ -28,13 +28,14 @@
 
     .agent-img {
       background-color: var(--md3-n2-700);
+      border: 2px solid var(--md3-a1-600);
       border-radius: 100vmax;
       object-fit: cover;
     }
 
     .level {
       position: relative;
-      top: calc(-0.75 * var(--fs-500));
+      top: calc(-1 * var(--fs-500));
       padding: 0.1rem 0.45rem;
       font-size: var(--fs-500);
       background-color: var(--md3-a1-600);
@@ -88,21 +89,31 @@
   }
 
   .more {
-    bottom: 0;
-    right: 0;
+    min-width: 0;
+    bottom: calc(0.425 * var(--app-radius));
+    right: calc(0.425 * var(--app-radius));
     font-size: var(--fs-400);
-    background-color: var(--md3-n2-700);
-    padding: 0.5rem 1rem;
+    height: 1.6rem;
     position: absolute;
-    border-radius: var(--app-radius);
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
+    aspect-ratio: 1;
+    --background: var(--md3-n2-700);
+    --padding-top: 0rem;
+    --padding-bottom: 0rem;
+    --padding-start: 0rem;
+    --padding-end: 0rem;
+    --border-radius: 100vmax;
+    --box-shadow: none;
+
+    ion-icon {
+      color: var(--md3-n2-200);
+      font-size: var(--fs-400);
+    }
   }
 
   &.red {
     .img-container {
       .agent-img {
-        background-color: var(--red-5);
+        border: 2px solid var(--red-6);
       }
       .level {
         background-color: var(--red-6);
@@ -113,7 +124,7 @@
   &.blue {
     .img-container {
       .agent-img {
-        background-color: var(--blue-5);
+        border: 2px solid var(--blue-6);
       }
       .level {
         background-color: var(--blue-6);

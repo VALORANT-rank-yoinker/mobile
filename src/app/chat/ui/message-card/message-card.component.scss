@@ -1,0 +1,65 @@
+:host {
+  --max-width: 70%;
+}
+.message {
+  max-width: var(--max-width);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  .sender {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0.3rem;
+    color: var(--md3-n2-500);
+    font-weight: bold;
+    font-size: var(--fs-400);
+
+    .agent-img {
+      height: 1.4rem;
+      width: 1.4rem;
+      background-color: var(--md3-n2-800);
+      border-radius: 100vmax;
+    }
+
+    .type {
+      font-size: var(--fs-400);
+
+      &.team {
+        color: var(--blue-3);
+      }
+
+      &.all {
+        color: var(--red-3);
+      }
+    }
+  }
+
+  .text {
+    width: fit-content;
+    border-radius: 0.65rem;
+    border-top-left-radius: 0;
+    padding: 0.45rem 1rem;
+    background-color: var(--ion-card-background-color);
+    font-size: var(--fs-550);
+  }
+
+  &.right {
+    margin-left: auto;
+    align-self: flex-end;
+    .sender {
+      align-self: flex-end;
+      .agent-img {
+        order: 3;
+      }
+    }
+    .text {
+      margin-left: auto;
+      background-color: var(--md3-a2-600);
+      border-radius: 0.65rem;
+      border-top-right-radius: 0;
+    }
+  }
+}

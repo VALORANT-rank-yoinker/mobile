@@ -12,17 +12,12 @@
 
   <ng-container *ngIf="(messages$ | async) as messages;else noData">
     <div class="messages-container">
-      <div class="message" *ngFor="let msg of messages" [class.self]="msg.self">
-        <div class="sender"><span class="type">{{msg.chatType|titlecase}}</span> {{formatSender(msg.player,msg.agent)}}
-        </div>
-        <div class="text">{{msg.message}}</div>
-      </div>
+      <app-message-card *ngFor="let msg of messages" [msg]="msg" [edge]="msg.self ? 'right':'left'"></app-message-card>
     </div>
   </ng-container>
 
   <ng-template #noData>
-    <div class="no-data-card" #no>
-      <ion-icon name="thunderstorm-outline"></ion-icon>
+    <div class="no-data">
       <p>No Messages</p>
     </div>
   </ng-template>

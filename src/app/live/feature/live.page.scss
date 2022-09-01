@@ -5,6 +5,46 @@
   font-weight: bold;
 }
 
+.filter-bar {
+  margin-inline-start: 0;
+  color: var(--md3-n2-600);
+  font-size: var(--fs-500);
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .filters {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6rem;
+
+    .filter {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: var(--md3-n2-800);
+
+      &.selected {
+        color: var(--md3-n1-100);
+
+        &.all {
+          background-color: var(--md3-a2-800);
+        }
+
+        &.blue {
+          background-color: var(--blue-6);
+        }
+
+        &.red {
+          background-color: var(--red-6);
+        }
+      }
+    }
+  }
+}
+
 .card-container {
   margin-top: 1rem;
   display: flex;

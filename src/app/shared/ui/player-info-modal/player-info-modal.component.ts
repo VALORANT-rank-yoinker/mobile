@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { SwiperModule } from 'swiper/angular';
 import { Player } from '../../interface/heartbeat.interface';
+import { getTierInfoByTierNumber } from '../../util/val-api';
 
 @Component({
   selector: 'app-player-info-modal',
@@ -10,11 +11,17 @@ import { Player } from '../../interface/heartbeat.interface';
   styleUrls: ['./player-info-modal.component.scss'],
   standalone: true,
   imports: [CommonModule, IonicModule, SwiperModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlayerInfoModalComponent implements OnInit {
+export class PlayerInfoModalComponent {
   player: Player;
+  getTierInfo = getTierInfoByTierNumber;
 
   constructor() {}
 
-  ngOnInit() {}
+  get weapons() {
+    return Object.values(this.player?.weapons || {}).filter(
+      (w) => !['Standard', 'Melee'].some((e) => w.skinDisplayName.includes(e))
+    );
+  }
 }

@@ -1,21 +1,38 @@
 <ion-content>
-  <h2 class="name">{{player.name}}</h2>
-  <h3>Stats</h3>
-  <div class="stats">
-    <div class="pill" *ngIf="player.level">Lvl: {{player.level}}</div>
-    <div class="pill" *ngIf="player.rr">RR: {{player.rr}}</div>
-    <div class="pill" *ngIf="player.winPercentage">WR%: {{player.winPercentage}}</div>
-    <div class="pill" *ngIf="player.kd">KD: {{player.kd}}</div>
-    <div class="pill" *ngIf="player.headshotPercentage">HS%: {{player.headshotPercentage}}</div>
+  <h2 class="name padded">{{player.name}}</h2>
+
+  <h3 class="ranks-heading padded">Rank Info</h3>
+  <div class="rankbox-container padded">
+    <div class="rankbox" *ngIf="getTierInfo(player.rank) as tier">
+      <img class="rankbox__img" [src]="tier.largeIcon" [style.backgroundColor]="'#'+tier.backgroundColor"
+        loading="lazy">
+      <div class="rankbox__name" [style.color]="'#'+tier.color">{{tier.tierName}}</div>
+      <div class="rankbox__desc" [style.color]="'#'+tier.color">Current</div>
+    </div>
+    <div class="rankbox" *ngIf="getTierInfo(player.peakRank) as tier">
+      <img class="rankbox__img" [src]="tier.largeIcon" [style.backgroundColor]="'#'+tier.backgroundColor"
+        loading="lazy">
+      <div class="rankbox__name" [style.color]="'#'+tier.color">{{tier.tierName}}</div>
+      <div class="rankbox__desc" [style.color]="'#'+tier.color">Peak {{player?.peakRankAct | uppercase}}</div>
+    </div>
   </div>
 
-  <h3 *ngIf="player.weapons">Weapons</h3>
+  <h3 class="stats-heading padded">Stats</h3>
+  <div class="stats padded">
+    <div class="pill" *ngIf="player.level">Level: {{player.level}}</div>
+    <div class="pill" *ngIf="player.rr">RR: {{player.rr}}</div>
+    <div class="pill" *ngIf="player.winPercentage">Win Percentage: {{player.winPercentage}}</div>
+    <div class="pill" *ngIf="player.kd">Kill/Death: {{player.kd}}</div>
+    <div class="pill" *ngIf="player.headshotPercentage">Headshot Percentage: {{player.headshotPercentage}}</div>
+  </div>
+
+  <h3 class="weapons-heading padded" *ngIf="weapons?.length">Skins</h3>
   <swiper>
-    <ng-template swiperSlide *ngFor="let w of player?.weapons| keyvalue">
+    <ng-template swiperSlide *ngFor="let w of weapons">
 
       <div class="weapon-card">
-        <div class="name">{{w.value.skinDisplayName}}</div>
-        <img [src]="w.value.skinDisplayIcon">
+        <div class="weapon-card__name">{{w.skinDisplayName}}</div>
+        <img [src]="w.skinDisplayIcon" loading="lazy">
       </div>
 
     </ng-template>

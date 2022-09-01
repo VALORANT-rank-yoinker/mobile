@@ -10,7 +10,13 @@ import { WsStatusComponent } from 'src/app/shared/ui/ws-status/ws-status.compone
 import { SettingsPage } from './settings.page';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, SettingsPageRoutingModule],
-  declarations: [SettingsPage, WsStatusComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    SettingsPageRoutingModule,
+    WsStatusComponent,
+  ],
+  declarations: [SettingsPage],
 })
 export class SettingsPageModule {}

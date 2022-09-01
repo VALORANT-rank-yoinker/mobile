@@ -1,0 +1,9 @@
+<div class="message" [ngClass]="[edge]">
+  <div class="sender">
+    <img [src]="agentImage(msg.agent)" loading="lazy" class="agent-img">
+    <div class="name">{{formatSender(msg.player,msg.agent)}}</div>
+    <span class="type" [ngClass]="[msg.group|lowercase]">@{{msg.group}}</span>
+  </div>
+  <div class="text">{{msg.text}}</div>
+  <!-- <div class="time">{{msg.time | date:'short'}}</div> -->
+</div>

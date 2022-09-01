@@ -16,8 +16,9 @@ import { LivePage } from './live.page';
     FormsModule,
     IonicModule,
     LivePageRoutingModule,
+    PlayerCardComponent,
     PlayerInfoModalComponent,
   ],
-  declarations: [LivePage, PlayerCardComponent],
+  declarations: [LivePage],
 })
 export class LivePageModule {}

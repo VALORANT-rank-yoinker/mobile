@@ -1,15 +1,17 @@
 {
   "name": "vry-mobile",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "tanishqmanuja@gmail.com",
   "homepage": "https://github.com/VALORANT-rank-yoinker/mobile",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npx ionic build",
+    "build:prod": "npx ionic build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "seed:val-api": "node scripts/val-api.mjs"
   },
   "private": true,
   "dependencies": {
@@ -56,6 +58,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "axios": "^0.27.2",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",

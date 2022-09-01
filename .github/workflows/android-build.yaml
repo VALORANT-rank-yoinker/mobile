@@ -27,6 +27,9 @@ jobs:
       - name: Install app dependencies
         run: npm install
 
+      - name: Seed app
+        run: npm run seed:val-api
+
       - name: Build app
         run: npm run build
 
