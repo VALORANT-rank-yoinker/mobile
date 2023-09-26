@@ -12,7 +12,7 @@
 
   <ng-container *ngIf="(heartbeat$ | async) as hb;else noData">
 
-    <div class="status">GameState: {{hb.state | titlecase}}{{hb.state==="INGAME" ? ' - '+hb.map : ''}}</div>
+    <div class="status">Game State: {{hb.state | titlecase}}{{hb.state==="INGAME" ? ' - '+hb.map : ''}}</div>
     <div class="filter-bar" *ngIf="hb.state==='INGAME'">
       <span>Filters</span>
       <div class="filters" *ngIf="teamFilter$ | async as currentFilter">
