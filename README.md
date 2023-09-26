@@ -28,7 +28,7 @@ npm run build #for production, npm run build:prod
 npx cap sync #for the first time, then you can, npx cap copy
 ```
 
-### building APK
+### Building APK
 
 ```sh
 cd android && ./gradlew assembleDebug # for Windows Only
